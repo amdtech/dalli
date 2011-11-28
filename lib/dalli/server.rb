@@ -283,6 +283,7 @@ module Dalli
       flags = 0
       flags |= FLAG_COMPRESSED if compressed
       flags |= FLAG_MARSHALLED if marshalled
+      flags |= options[:flags] if options[:flags]
       [value, flags]
     end
 
