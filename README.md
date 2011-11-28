@@ -120,6 +120,8 @@ Dalli::Client accepts the following options. All times are in seconds.
 
 **failover**: Boolean, if true Dalli will failover to another server if the main server for a key is down.
 
+**nonascii**: Boolean, if true Dalli will allow the use of non-ascii keys.
+
 **compression**: Boolean, if true Dalli will gzip-compress values larger than 1K.
 
 **socket_timeout**: Timeout for all socket operations (connect, read, write). Default is 0.5.
