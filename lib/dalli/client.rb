@@ -23,6 +23,7 @@ module Dalli
     #
     # Options:
     # - :failover - if a server is down, look for and store values on another server in the ring.  Default: true.
+    # - :nonascii - allow the use of nonascii key names.  Default: false.
     # - :threadsafe - ensure that only one thread is actively using a socket at a time. Default: true.
     # - :expires_in - default TTL in seconds if you do not pass TTL as a parameter to an individual operation, defaults to 0 or forever
     # - :compression - defaults to false, if true Dalli will compress values larger than 100 bytes before
@@ -270,9 +271,11 @@ module Dalli
     end
 
     def validate_key(key)
-      raise ArgumentError, "illegal character in key #{key}" if key.respond_to?(:ascii_only?) && !key.ascii_only?
-      raise ArgumentError, "illegal character in key #{key}" if key =~ /\s/
-      raise ArgumentError, "illegal character in key #{key}" if key =~ /[\x00-\x20\x80-\xFF]/
+      unless !!@options[:nonascii] === true
+        raise ArgumentError, "illegal character in key #{key}" if key.respond_to?(:ascii_only?) && !key.ascii_only?
+        raise ArgumentError, "illegal character in key #{key}" if key =~ /\s/
+        raise ArgumentError, "illegal character in key #{key}" if key =~ /[\x00-\x20\x80-\xFF]/
+      end
       raise ArgumentError, "key cannot be blank" if key.nil? || key.strip.size == 0
       raise ArgumentError, "key too long #{key.inspect}" if key.length > 250
     end
