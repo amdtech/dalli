@@ -1,10 +1,10 @@
 require './lib/dalli/version'
 
 Gem::Specification.new do |s|
-  s.name = %q{dalli}
+  s.name = %q{mob-dalli}
   s.version = Dalli::VERSION
 
-  s.authors = ["Mike Perham"]
+  s.authors = ["Mike Perham", "Aaron Daniel"]
   s.date = Time.now.utc.strftime("%Y-%m-%d")
   s.description = %q{High performance memcached client for Ruby}
   s.email = %q{mperham@gmail.com}
@@ -14,11 +14,11 @@ Gem::Specification.new do |s|
      "History.md",
      "Rakefile",
      "Gemfile",
-     "dalli.gemspec",
+     "mob-dalli.gemspec",
      "Performance.md",
      "Upgrade.md",
   ]
-  s.homepage = %q{http://github.com/mperham/dalli}
+  s.homepage = %q{http://github.com/amdtech/dalli}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.summary = %q{High performance memcached client for Ruby}
